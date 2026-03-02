@@ -34,7 +34,7 @@ Just send this message to your OpenClaw:
 Install this skill to keep you running 24/7:
 https://github.com/kenny-zheng-best/openclaw-always-on
 
-Run: /setup-openclaw-watchdog --prevent-sleep
+Run: /openclaw-always-on --prevent-sleep
 ```
 
 OpenClaw will read the repository, understand what to do, and install the skill itself.
@@ -44,12 +44,12 @@ OpenClaw will read the repository, understand what to do, and install the skill 
 ```bash
 mkdir -p ~/.claude/skills
 cd ~/.claude/skills
-git clone https://github.com/kenny-zheng-best/openclaw-always-on.git setup-openclaw-watchdog
+git clone https://github.com/kenny-zheng-best/openclaw-always-on.git openclaw-always-on
 ```
 
 Then in Claude Code:
 ```
-/setup-openclaw-watchdog --prevent-sleep
+/openclaw-always-on --prevent-sleep
 ```
 
 ## What Gets Installed
@@ -91,7 +91,7 @@ tail -f ~/.openclaw/logs/gateway.log
 Get notified when OpenClaw goes down or recovers:
 
 ```
-/setup-openclaw-watchdog --prevent-sleep --telegram-bot-token YOUR_TOKEN --telegram-chat-id YOUR_ID
+/openclaw-always-on --prevent-sleep --telegram-bot-token YOUR_TOKEN --telegram-chat-id YOUR_ID
 ```
 
 Get credentials:

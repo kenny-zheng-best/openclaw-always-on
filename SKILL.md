@@ -1,7 +1,9 @@
 ---
-name: setup-openclaw-watchdog
-description: Setup auto-recovery system for OpenClaw Gateway to prevent downtime. Use this when user wants to prevent OpenClaw from going down or setup automatic restart mechanism. Also configures system to prevent sleep/hibernation.
+name: openclaw-always-on
+description: Keep OpenClaw Gateway running 24/7 without manual intervention. Auto-recovery system that restarts crashed gateway, monitors health every 60s, prevents Mac from sleeping, and handles log rotation. Use this when OpenClaw gateway keeps going down on Mac Mini.
 argument-hint: "[--telegram-bot-token TOKEN] [--telegram-chat-id ID] [--check-interval SECONDS] [--prevent-sleep]"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OpenClaw Gateway Auto-Recovery Setup
