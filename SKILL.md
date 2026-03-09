@@ -1,12 +1,10 @@
 ---
 name: openclaw-never-die
-type: skill
-version: 2.0.0
-displayName: OpenClaw Never Die
 description: Keep OpenClaw Gateway running 24/7 without manual intervention. Auto-recovery system that restarts crashed gateway, monitors health every 60s, prevents Mac from sleeping, and handles log rotation. ALWAYS use this skill when user mentions: OpenClaw downtime, gateway crashes, service reliability, Mac Mini server setup, 24/7 operation, automatic restart, or keeping services alive. Use proactively if you detect the user has OpenClaw installed and might benefit from stability improvements.
-argument-hint: "[--telegram-bot-token TOKEN] [--telegram-chat-id ID] [--check-interval SECONDS] [--prevent-sleep]"
-disable-model-invocation: false
+version: 2.0.0
 user-invocable: true
+argument-hint: "[--telegram-bot-token TOKEN] [--telegram-chat-id ID] [--check-interval SECONDS] [--prevent-sleep]"
+metadata: {"openclaw":{"os":["macos"],"requires":{"bins":["node"],"anyBins":["openclaw"]},"emoji":"💀"}}
 ---
 
 # OpenClaw Gateway Auto-Recovery Setup
@@ -84,7 +82,18 @@ OPENCLAW_BIN=$(which openclaw 2>/dev/null || echo "$HOME/.openclaw/bin/openclaw"
 OPENCLAW_LIB=$(dirname "$(dirname "$OPENCLAW_BIN")")/lib
 HOME_DIR=$HOME
 GATEWAY_PORT=18789
+
+# Verify entry.js exists at the expected path
+ENTRY_JS="$OPENCLAW_LIB/node_modules/openclaw/dist/entry.js"
+if [ ! -f "$ENTRY_JS" ]; then
+    # Try alternative paths
+    for alt in "$HOME/.openclaw/lib/entry.js" "$(dirname "$OPENCLAW_BIN")/../lib/entry.js"; do
+        [ -f "$alt" ] && ENTRY_JS="$alt" && break
+    done
+fi
 ```
+
+If `entry.js` is not found at any path, report the issue and stop.
 
 Copy the template from this skill's `templates/ai.openclaw.gateway.plist` and replace placeholders:
 - `__NODE_PATH__` → value of `$NODE_PATH`
@@ -108,6 +117,15 @@ Replace placeholders in the copied file:
 - `__TELEGRAM_BOT_TOKEN__` → the token from arguments, or empty string if not provided
 - `__TELEGRAM_CHAT_ID__` → the chat ID from arguments, or empty string if not provided
 
+If Telegram credentials are provided, also write them to `~/.openclaw/watchdog/telegram.conf` (permissions 600) so they can be updated independently:
+```bash
+cat > ~/.openclaw/watchdog/telegram.conf << EOF
+TELEGRAM_BOT_TOKEN="TOKEN_VALUE"
+TELEGRAM_CHAT_ID="CHAT_ID_VALUE"
+EOF
+chmod 600 ~/.openclaw/watchdog/telegram.conf
+```
+
 Make it executable:
 ```bash
 chmod +x ~/.openclaw/watchdog/gateway-watchdog.sh
@@ -120,6 +138,8 @@ Copy `templates/ai.openclaw.watchdog.plist` and replace:
 - `__CHECK_INTERVAL__` → value from `--check-interval` argument (default: 60)
 
 Write to `~/Library/LaunchAgents/ai.openclaw.watchdog.plist`.
+
+**Note:** The watchdog plist uses `StartInterval` (not KeepAlive) to run periodic health checks at the configured interval.
 
 ### Step 8: Install Prevent-Sleep Service (only if --prevent-sleep)
 

@@ -53,26 +53,26 @@ cd openclaw-never-die
 2. **推送到 GitHub**
    ```bash
    # 在 GitHub 创建新仓库，然后：
-   git remote add origin https://github.com/YOUR_USERNAME/openclaw-never-die.git
+   git remote add origin https://github.com/kennyzheng-builds/openclaw-never-die.git
    git branch -M main
    git push -u origin main
    ```
 
 3. **分享仓库链接**
-   例如: `https://github.com/YOUR_USERNAME/openclaw-never-die`
+   例如: `https://github.com/kennyzheng-builds/openclaw-never-die`
 
 ### 其他用户安装：
 
 ```bash
 cd ~/Downloads
-git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
+git clone https://github.com/kennyzheng-builds/openclaw-never-die.git
 cd openclaw-never-die
 ./install.sh
 ```
 
 或手动复制：
 ```bash
-git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
+git clone https://github.com/kennyzheng-builds/openclaw-never-die.git
 mkdir -p ~/.claude/skills
 cp -r openclaw-never-die ~/.claude/skills/openclaw-never-die
 ```
@@ -124,11 +124,11 @@ TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR"
 
 # 方案 A: 从 GitHub 下载
-git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
+git clone https://github.com/kennyzheng-builds/openclaw-never-die.git
 cd openclaw-never-die
 
 # 或方案 B: 直接下载压缩包
-# curl -L -o skill.tar.gz https://github.com/YOUR_USERNAME/openclaw-never-die/archive/main.tar.gz
+# curl -L -o skill.tar.gz https://github.com/kennyzheng-builds/openclaw-never-die/archive/main.tar.gz
 # tar -xzf skill.tar.gz
 # cd openclaw-never-die-main
 
@@ -201,7 +201,7 @@ ls -la ~/.claude/skills/openclaw-never-die/
 分享时可以附上：
 
 **问题反馈渠道：**
-- GitHub Issues: `https://github.com/YOUR_USERNAME/openclaw-never-die/issues`
+- GitHub Issues: `https://github.com/kennyzheng-builds/openclaw-never-die/issues`
 - 邮件: your-email@example.com
 - 讨论区: 你的社区/论坛链接
 

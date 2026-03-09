@@ -4,7 +4,7 @@
 set -e
 
 SKILL_NAME="openclaw-never-die"
-VERSION="1.0.0"
+VERSION="2.0.0"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 PACKAGE_NAME="${SKILL_NAME}-${VERSION}-${TIMESTAMP}"
 
@@ -14,7 +14,6 @@ echo ""
 
 # Get script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$SCRIPT_DIR/.."
 
 # Create temp packaging directory
 TEMP_DIR=$(mktemp -d)
@@ -22,7 +21,8 @@ PKG_DIR="$TEMP_DIR/$SKILL_NAME"
 
 echo "📂 Copying files..."
 mkdir -p "$PKG_DIR"
-cp -r "$SKILL_NAME"/* "$PKG_DIR/"
+cp -r "$SCRIPT_DIR"/* "$PKG_DIR/"
+rm -f "$PKG_DIR/package.sh"  # Don't include packaging script itself
 
 # Create version file
 echo "$VERSION" > "$PKG_DIR/VERSION"

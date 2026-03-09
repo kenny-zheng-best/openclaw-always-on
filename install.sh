@@ -42,7 +42,7 @@ mkdir -p "$SKILL_DIR/templates"
 
 # Copy essential skill files
 echo "Installing skill files..."
-for f in SKILL.md README.md CHANGELOG.md PREVENT-SLEEP.md prevent-sleep.sh; do
+for f in SKILL.md README.md CHANGELOG.md PREVENT-SLEEP.md prevent-sleep.sh install.sh test.sh LICENSE; do
     [ -f "$SCRIPT_DIR/$f" ] && cp "$SCRIPT_DIR/$f" "$SKILL_DIR/"
 done
 

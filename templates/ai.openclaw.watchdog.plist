@@ -17,9 +17,6 @@
     <key>RunAtLoad</key>
     <true/>
 
-    <key>KeepAlive</key>
-    <true/>
-
     <key>StandardOutPath</key>
     <string>__HOME_DIR__/.openclaw/watchdog/watchdog-stdout.log</string>
 
@@ -34,7 +31,7 @@
       <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
     </dict>
 
-    <key>ThrottleInterval</key>
+    <key>StartInterval</key>
     <integer>__CHECK_INTERVAL__</integer>
   </dict>
 </plist>

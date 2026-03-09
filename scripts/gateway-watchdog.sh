@@ -13,8 +13,13 @@ FAILURE_COUNT_FILE="$HOME/.openclaw/watchdog/failure_count"
 MAX_LOG_SIZE_MB=100
 MIN_DISK_SPACE_GB=2
 
-TELEGRAM_BOT_TOKEN="__TELEGRAM_BOT_TOKEN__"
-TELEGRAM_CHAT_ID="__TELEGRAM_CHAT_ID__"
+TELEGRAM_CONFIG="$HOME/.openclaw/watchdog/telegram.conf"
+if [ -f "$TELEGRAM_CONFIG" ]; then
+    source "$TELEGRAM_CONFIG"
+else
+    TELEGRAM_BOT_TOKEN="__TELEGRAM_BOT_TOKEN__"
+    TELEGRAM_CHAT_ID="__TELEGRAM_CHAT_ID__"
+fi
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
@@ -33,17 +38,24 @@ notify_macos() {
     osascript -e "display notification \"$2\" with title \"$1\" sound name \"Ping\"" 2>/dev/null
 }
 
-rotate_log_if_needed() {
-    if [ -f "$LOG_FILE" ]; then
-        local log_size_mb=$(du -m "$LOG_FILE" 2>/dev/null | cut -f1)
+rotate_single_log() {
+    local target_log="$1"
+    if [ -f "$target_log" ]; then
+        local log_size_mb=$(du -m "$target_log" 2>/dev/null | cut -f1)
         if [ "$log_size_mb" -gt "$MAX_LOG_SIZE_MB" ]; then
             local timestamp=$(date '+%Y%m%d_%H%M%S')
-            log "Log file too large (${log_size_mb}MB), rotating..."
-            mv "$LOG_FILE" "$LOG_FILE.$timestamp"
-            gzip "$LOG_FILE.$timestamp" &
-            ls -t "$HOME/.openclaw/watchdog/watchdog.log".*.gz 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null
+            log "Log file too large: $target_log (${log_size_mb}MB), rotating..."
+            mv "$target_log" "$target_log.$timestamp"
+            gzip "$target_log.$timestamp" &
+            ls -t "$target_log".*.gz 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null
         fi
     fi
+}
+
+rotate_log_if_needed() {
+    rotate_single_log "$LOG_FILE"
+    rotate_single_log "$HOME/.openclaw/logs/gateway.log"
+    rotate_single_log "$HOME/.openclaw/logs/gateway.err.log"
 }
 
 check_resources() {
@@ -116,7 +128,7 @@ restart_gateway() {
         launchctl kickstart -k "gui/$(id -u)/ai.openclaw.gateway" >> "$LOG_FILE" 2>&1
     else
         log "LaunchAgent not loaded, loading service..."
-        launchctl load ~/Library/LaunchAgents/ai.openclaw.gateway.plist >> "$LOG_FILE" 2>&1
+        launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.openclaw.gateway.plist >> "$LOG_FILE" 2>&1
     fi
 
     local max_attempts=3

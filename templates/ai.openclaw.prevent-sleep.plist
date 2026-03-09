@@ -11,7 +11,7 @@
     <key>ProgramArguments</key>
     <array>
       <string>/usr/bin/caffeinate</string>
-      <string>-dims</string>
+      <string>-ims</string>
     </array>
 
     <key>RunAtLoad</key>
