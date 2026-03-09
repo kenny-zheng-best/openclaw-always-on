@@ -129,7 +129,7 @@ Downtime reduction:
 
 **Automatic upgrade** - Just run the skill again:
 ```
-/setup-openclaw-watchdog [your previous arguments]
+/openclaw-never-die [your previous arguments]
 ```
 
 The skill will:

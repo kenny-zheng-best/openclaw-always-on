@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>ai.openclaw.watchdog</string>
+
+    <key>Comment</key>
+    <string>OpenClaw Gateway Watchdog - Auto-restart on failure</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>__HOME_DIR__/.openclaw/watchdog/gateway-watchdog.sh</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>__HOME_DIR__/.openclaw/watchdog/watchdog-stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>__HOME_DIR__/.openclaw/watchdog/watchdog-stderr.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>HOME</key>
+      <string>__HOME_DIR__</string>
+      <key>PATH</key>
+      <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+
+    <key>ThrottleInterval</key>
+    <integer>__CHECK_INTERVAL__</integer>
+  </dict>
+</plist>

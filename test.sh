@@ -7,7 +7,7 @@ echo "🧪 OpenClaw Watchdog Skill - Installation Test"
 echo "=============================================="
 echo ""
 
-SKILL_DIR="$HOME/.claude/skills/setup-openclaw-watchdog"
+SKILL_DIR="$HOME/.claude/skills/openclaw-never-die"
 ERRORS=0
 
 # Color codes

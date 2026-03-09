@@ -3,7 +3,7 @@
 
 set -e
 
-SKILL_NAME="setup-openclaw-watchdog"
+SKILL_NAME="openclaw-never-die"
 VERSION="1.0.0"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 PACKAGE_NAME="${SKILL_NAME}-${VERSION}-${TIMESTAMP}"

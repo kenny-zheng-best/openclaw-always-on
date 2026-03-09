@@ -21,7 +21,7 @@ Mac 在休眠时会暂停所有进程，导致：
 运行 skill 时添加 `--prevent-sleep` 参数：
 
 ```bash
-/setup-openclaw-watchdog --prevent-sleep
+/openclaw-never-die --prevent-sleep
 ```
 
 这会自动安装一个 caffeinate LaunchAgent 服务，让 Mac 保持唤醒。
@@ -31,7 +31,7 @@ Mac 在休眠时会暂停所有进程，导致：
 Skill 包含一个独立的配置脚本：
 
 ```bash
-cd ~/.claude/skills/setup-openclaw-watchdog
+cd ~/.claude/skills/openclaw-never-die
 ./prevent-sleep.sh
 ```
 
@@ -252,7 +252,7 @@ launchctl bootout gui/$(id -u)/ai.openclaw.prevent-sleep 2>/dev/null
 rm ~/Library/LaunchAgents/ai.openclaw.prevent-sleep.plist
 
 # 重新安装
-~/.claude/skills/setup-openclaw-watchdog/prevent-sleep.sh install
+~/.claude/skills/openclaw-never-die/prevent-sleep.sh install
 ```
 
 ### 问题：pmset 需要 sudo
@@ -283,7 +283,7 @@ rm ~/Library/LaunchAgents/ai.openclaw.prevent-sleep.plist
 
 或使用脚本：
 ```bash
-~/.claude/skills/setup-openclaw-watchdog/prevent-sleep.sh uninstall
+~/.claude/skills/openclaw-never-die/prevent-sleep.sh uninstall
 ```
 
 ### 恢复 pmset 设置

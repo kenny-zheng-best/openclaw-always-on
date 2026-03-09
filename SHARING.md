@@ -9,30 +9,30 @@
 1. **打包整个 skill 文件夹**
    ```bash
    cd ~/.claude/skills
-   tar -czf openclaw-watchdog-skill.tar.gz setup-openclaw-watchdog/
+   tar -czf openclaw-never-die.tar.gz openclaw-never-die/
    ```
 
 2. **分享压缩包**
-   - 通过邮件、云盘、或消息发送 `openclaw-watchdog-skill.tar.gz`
-   - 或者直接分享文件夹（复制 `setup-openclaw-watchdog/` 目录）
+   - 通过邮件、云盘、或消息发送 `openclaw-never-die.tar.gz`
+   - 或者直接分享文件夹（复制 `openclaw-never-die/` 目录）
 
 ### 接收方（其他用户）：
 
 1. **解压到 Claude skills 目录**
    ```bash
    cd ~/Downloads  # 或压缩包所在目录
-   tar -xzf openclaw-watchdog-skill.tar.gz
+   tar -xzf openclaw-never-die.tar.gz
    mkdir -p ~/.claude/skills
-   mv setup-openclaw-watchdog ~/.claude/skills/
+   mv openclaw-never-die ~/.claude/skills/
    ```
 
 2. **使用 skill**
    - 启动 Claude Code
-   - 运行: `/setup-openclaw-watchdog`
+   - 运行: `/openclaw-never-die`
 
 或者使用便捷安装脚本：
 ```bash
-cd setup-openclaw-watchdog
+cd openclaw-never-die
 ./install.sh
 ```
 
@@ -44,7 +44,7 @@ cd setup-openclaw-watchdog
 
 1. **初始化仓库**
    ```bash
-   cd ~/.claude/skills/setup-openclaw-watchdog
+   cd ~/.claude/skills/openclaw-never-die
    git init
    git add .
    git commit -m "Initial commit: OpenClaw auto-recovery skill"
@@ -53,28 +53,28 @@ cd setup-openclaw-watchdog
 2. **推送到 GitHub**
    ```bash
    # 在 GitHub 创建新仓库，然后：
-   git remote add origin https://github.com/YOUR_USERNAME/openclaw-watchdog-skill.git
+   git remote add origin https://github.com/YOUR_USERNAME/openclaw-never-die.git
    git branch -M main
    git push -u origin main
    ```
 
 3. **分享仓库链接**
-   例如: `https://github.com/YOUR_USERNAME/openclaw-watchdog-skill`
+   例如: `https://github.com/YOUR_USERNAME/openclaw-never-die`
 
 ### 其他用户安装：
 
 ```bash
 cd ~/Downloads
-git clone https://github.com/YOUR_USERNAME/openclaw-watchdog-skill.git
-cd openclaw-watchdog-skill
+git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
+cd openclaw-never-die
 ./install.sh
 ```
 
 或手动复制：
 ```bash
-git clone https://github.com/YOUR_USERNAME/openclaw-watchdog-skill.git
+git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
 mkdir -p ~/.claude/skills
-cp -r openclaw-watchdog-skill ~/.claude/skills/setup-openclaw-watchdog
+cp -r openclaw-never-die ~/.claude/skills/openclaw-never-die
 ```
 
 ---
@@ -87,12 +87,12 @@ cp -r openclaw-watchdog-skill ~/.claude/skills/setup-openclaw-watchdog
    ```bash
    cd /path/to/your/project
    mkdir -p .claude/skills
-   cp -r ~/.claude/skills/setup-openclaw-watchdog .claude/skills/
+   cp -r ~/.claude/skills/openclaw-never-die .claude/skills/
    ```
 
 2. **提交到版本控制**
    ```bash
-   git add .claude/skills/setup-openclaw-watchdog
+   git add .claude/skills/openclaw-never-die
    git commit -m "Add OpenClaw auto-recovery skill"
    git push
    ```
@@ -100,7 +100,7 @@ cp -r openclaw-watchdog-skill ~/.claude/skills/setup-openclaw-watchdog
 3. **团队成员使用**
    - Pull 最新代码
    - Skill 自动可用（项目级 skill）
-   - 运行: `/setup-openclaw-watchdog`
+   - 运行: `/openclaw-never-die`
 
 ---
 
@@ -124,13 +124,13 @@ TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR"
 
 # 方案 A: 从 GitHub 下载
-git clone https://github.com/YOUR_USERNAME/openclaw-watchdog-skill.git
-cd openclaw-watchdog-skill
+git clone https://github.com/YOUR_USERNAME/openclaw-never-die.git
+cd openclaw-never-die
 
 # 或方案 B: 直接下载压缩包
-# curl -L -o skill.tar.gz https://github.com/YOUR_USERNAME/openclaw-watchdog-skill/archive/main.tar.gz
+# curl -L -o skill.tar.gz https://github.com/YOUR_USERNAME/openclaw-never-die/archive/main.tar.gz
 # tar -xzf skill.tar.gz
-# cd openclaw-watchdog-skill-main
+# cd openclaw-never-die-main
 
 # 安装
 ./install.sh
@@ -156,7 +156,7 @@ echo "✅ Installation complete!"
 安装方法：
 1. 下载: [链接到压缩包或 GitHub]
 2. 解压到: ~/.claude/skills/
-3. 使用: /setup-openclaw-watchdog
+3. 使用: /openclaw-never-die
 
 功能：
 ✅ 自动重启崩溃的 gateway
@@ -175,7 +175,7 @@ echo "✅ Installation complete!"
 
 ```bash
 # 检查文件存在
-ls -la ~/.claude/skills/setup-openclaw-watchdog/
+ls -la ~/.claude/skills/openclaw-never-die/
 
 # 应该看到：
 # SKILL.md (主文件)
@@ -186,7 +186,7 @@ ls -la ~/.claude/skills/setup-openclaw-watchdog/
 
 在 Claude Code 中测试：
 ```
-/setup-openclaw-watchdog --help
+/openclaw-never-die --help
 ```
 
 如果 skill 没有出现，尝试：
@@ -201,7 +201,7 @@ ls -la ~/.claude/skills/setup-openclaw-watchdog/
 分享时可以附上：
 
 **问题反馈渠道：**
-- GitHub Issues: `https://github.com/YOUR_USERNAME/openclaw-watchdog-skill/issues`
+- GitHub Issues: `https://github.com/YOUR_USERNAME/openclaw-never-die/issues`
 - 邮件: your-email@example.com
 - 讨论区: 你的社区/论坛链接
 
@@ -218,7 +218,7 @@ ls -la ~/.claude/skills/setup-openclaw-watchdog/
 
 ### 发送方更新 GitHub：
 ```bash
-cd ~/.claude/skills/setup-openclaw-watchdog
+cd ~/.claude/skills/openclaw-never-die
 git add .
 git commit -m "Update: [描述改进]"
 git push
@@ -226,7 +226,7 @@ git push
 
 ### 接收方更新：
 ```bash
-cd ~/.claude/skills/setup-openclaw-watchdog
+cd ~/.claude/skills/openclaw-never-die
 git pull
 # 或重新运行 install.sh
 ```
@@ -237,7 +237,7 @@ git pull
 
 **Q: Skill 不显示怎么办？**
 A:
-1. 确认路径: `~/.claude/skills/setup-openclaw-watchdog/SKILL.md`
+1. 确认路径: `~/.claude/skills/openclaw-never-die/SKILL.md`
 2. 重启 Claude Code
 3. 检查 SKILL.md frontmatter 格式
 
@@ -247,7 +247,7 @@ A: 可以！编辑 SKILL.md 自定义行为
 **Q: 如何卸载？**
 A:
 ```bash
-rm -rf ~/.claude/skills/setup-openclaw-watchdog
+rm -rf ~/.claude/skills/openclaw-never-die
 ```
 
 **Q: 支持 Windows/Linux 吗？**
